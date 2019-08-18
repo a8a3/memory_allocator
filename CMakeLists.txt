@@ -21,24 +21,24 @@ target_include_directories(allocator_gtest PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/sources
 )
 
-target_link_libraries(allocator_gtest 
+target_link_libraries(allocator_gtest
     ${GTEST_BOTH_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
 )
 
 if (MSVC)
     target_compile_options(allocator PRIVATE
-        /W4
+        /W4 -O3
     )
     target_compile_options(allocator_gtest PRIVATE
-        /W4
+        /W4 -O3
     )
 else ()
     target_compile_options(allocator PRIVATE
-        -Wall -Wextra -pedantic -Werror
+        -Wall -Wextra -pedantic -Werror -O3
     )
     target_compile_options(allocator_gtest PRIVATE
-        -Wall -Wextra -pedantic -Werror
+        -Wall -Wextra -pedantic -Werror -O3
     )
 endif()
 
