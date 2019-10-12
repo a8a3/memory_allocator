@@ -18,7 +18,10 @@ int main( int, char** ) {
         std::cout << item.first << " " << item.second << std::endl;
     }
 
-    std::map<size_t, size_t, std::less<size_t>, reserving_allocator<std::pair<const size_t, size_t>, size>> rm;
+    std::map<size_t, 
+             size_t, 
+             std::less<size_t>, 
+             allocators::reserving_allocator<std::pair<const size_t, size_t>, size>> rm;
     for (size_t i = 0; i < size; ++i) {
         rm.insert({i, math::factorial(i)});
     }
@@ -27,7 +30,7 @@ int main( int, char** ) {
         std::cout << item.first << " " << item.second << std::endl;
     }
 
-    custom_container<int> cc;
+    containers::custom_container<int> cc;
     for (size_t i = 0; i < size; ++i) {
         cc.push_back(i);
     }
@@ -36,7 +39,7 @@ int main( int, char** ) {
         std::cout << cc.get(i) << std::endl;
     }    
 
-    custom_container<int, reserving_allocator<int, size>> rcc;
+    containers::custom_container<int, allocators::reserving_allocator<int, size>> rcc;
     for (size_t i = 0; i < size; ++i) {
         rcc.push_back(i);
     }

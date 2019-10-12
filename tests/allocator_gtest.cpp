@@ -14,11 +14,24 @@ TEST(FactorialTest, FactorialTest) {
 }
 
 // ------------------------------------------------------------------
+TEST(ReservingAllocatorTest, ReservingAllocatorTest) {
+    constexpr size_t size = 5;
+    constexpr size_t overflow_size = 6;
+
+    allocators::reserving_allocator<int, size> ra;
+    ASSERT_NO_THROW(ra.allocate(size));
+    ASSERT_THROW(ra.allocate(1), std::overflow_error);
+
+    allocators::reserving_allocator<int, size> ra_1;
+    ASSERT_THROW(ra_1.allocate(overflow_size), std::length_error);
+}
+
+// ------------------------------------------------------------------
 TEST(CustomContainerTest, CustomContainerTest) {
     constexpr size_t container_size  = 5;
     constexpr size_t unbounded_index = 10;
 
-    custom_container<size_t, reserving_allocator<size_t, container_size>> cc;
+    containers::custom_container<size_t, allocators::reserving_allocator<size_t, container_size>> cc;
     ASSERT_EQ(cc.size(), 0);
 
     for (size_t i = 0; i < container_size; ++i) {
