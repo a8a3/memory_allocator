@@ -6,7 +6,7 @@
 
 // ------------------------------------------------------------------
 TEST(FactorialTest, FactorialTest) {
-    ASSERT_EQ(math::factorial( 0), 0);
+    ASSERT_EQ(math::factorial( 0), 1);
     ASSERT_EQ(math::factorial( 1), 1);
     ASSERT_EQ(math::factorial( 2), 2);
     ASSERT_EQ(math::factorial( 5), 120);
